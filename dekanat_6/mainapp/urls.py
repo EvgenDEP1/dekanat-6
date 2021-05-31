@@ -6,4 +6,5 @@ app_name = 'mainapp'
 
 urlpatterns = [
     path('', mainapp.index, name='index'),
+    path('group/', mainapp.group, name='group'),
 ]
