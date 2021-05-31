@@ -6,5 +6,12 @@
 </head>
 <body>
 
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Добавить</button>
+        </form>
+    </div>
 </body>
 </html>
