@@ -2,13 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ title|capfirst }} | dekanat-6</title>
 </head>
 <body>
     <h3>Группы</h3>
 
-    {% for item in groups %}
-        <p>{{ item.name }} {{ item.desc }}</p>
-    {% endfor %}
+    <div class="col"><a href="{% url 'mainapp:group_create' %}">Создать</a></div>
+    <ul>
+        {% for item in groups %}
+            <li>
+                <a href="{% url 'mainapp:group_show' item.id %}">
+                    {{ item.name }} {{ item.desc }}
+                </a>
+
+                <a href="{% url 'mainapp:group_change' item.id %}" class="btn btn-info">
+                    Редактировать
+                </a>
+
+                <a href="{% url 'mainapp:group_delete' item.id %}"
+                   style="text-decoration: none;">
+                    Удалить
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

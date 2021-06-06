@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title|capfirst }} | dekanat-6</title>
+</head>
+<body>
+<div>
+    <a href="{% url 'mainapp:group' %}">Все группы</a>
+</div>
+<h3>Студенты: </h3>
+
+<ul>
+    {% for item in students %}
+    <li>
+        {{ item.group }} {{ item.surname }} {{ item.name }} {{ item.patronymic }}
+        <a>
+
+        </a>
+    </li>
+
+    {% endfor %}
+</ul>
+
+
+
+</body>
+</html>
+

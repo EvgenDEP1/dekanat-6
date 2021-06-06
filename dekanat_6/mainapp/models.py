@@ -25,3 +25,4 @@ class Student(models.Model):
     class Meta:
         verbose_name = 'Студент'
         verbose_name_plural = 'Студенты'
+        # ordering = ['-created']
