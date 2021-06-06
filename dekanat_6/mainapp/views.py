@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from mainapp.models import Group, Student
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from mainapp.forms import GroupForm, StudentForm
+from mainapp.forms import GroupForm
 
 
 def index(request):
