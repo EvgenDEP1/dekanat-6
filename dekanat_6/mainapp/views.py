@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from mainapp.models import Group, Student
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from mainapp.forms import GroupForm
+from mainapp.forms import GroupForm, StudentForm
 
 
 def index(request):
@@ -33,6 +33,21 @@ def group_show(request, pk):
     return render(request, 'mainapp/group_show.html', context)
 
 
+def student_create(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('mainapp:group'))
+    else:
+        form = StudentForm()
+    context = {
+        'title': 'Добавить (изменить)',
+        'form': form,
+    }
+    return render(request, 'mainapp/form.html', context)
+
+
 def group_create(request):
     if request.method == 'POST':
         form = GroupForm(request.POST)
@@ -45,12 +60,18 @@ def group_create(request):
         'title': 'Добавить группу',
         'form': form,
     }
-    return render(request, 'mainapp/group_create.html', context)
+    return render(request, 'mainapp/form.html', context)
 
 
 def group_delete(request, pk):
     group = Group.objects.get(pk=pk)
     group.delete()
+    return HttpResponseRedirect(reverse('mainapp:group'))
+
+
+def student_delete(request, pk):
+    student = Student.objects.get(pk=pk)
+    student.delete()
     return HttpResponseRedirect(reverse('mainapp:group'))
 
 
@@ -67,5 +88,21 @@ def group_change(request, pk):
         'title': 'Изменить группу',
         'form': form,
     }
-    return render(request, 'mainapp/group_create.html', context)
+    return render(request, 'mainapp/form.html', context)
+
+
+def student_change(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('mainapp:group'))
+    else:
+        form = StudentForm(instance=student)
+    context = {
+        'title': 'Изменить студента',
+        'form': form,
+    }
+    return render(request, 'mainapp/form.html', context)
 

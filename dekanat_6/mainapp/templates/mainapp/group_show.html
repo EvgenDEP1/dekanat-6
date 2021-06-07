@@ -9,16 +9,18 @@
     <a href="{% url 'mainapp:group' %}">Все группы</a>
 </div>
 <h3>Студенты: </h3>
-
+<div class="col"><a href="{% url 'mainapp:student_create' %}">Добавить</a></div>
 <ul>
     {% for item in students %}
     <li>
-        {{ item.group }} {{ item.surname }} {{ item.name }} {{ item.patronymic }}
-        <a>
-
+        {{ item.surname }} {{ item.name }} {{ item.patronymic }}
+        <a href="{% url 'mainapp:student_change' item.id %}" class="btn btn-info">
+            Редактировать
+        </a>
+        <a href="{% url 'mainapp:student_delete' item.id %}">
+            Удалить
         </a>
     </li>
-
     {% endfor %}
 </ul>
 

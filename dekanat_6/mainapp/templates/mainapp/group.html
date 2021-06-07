@@ -6,7 +6,6 @@
 </head>
 <body>
     <h3>Группы</h3>
-
     <div class="col"><a href="{% url 'mainapp:group_create' %}">Создать</a></div>
     <ul>
         {% for item in groups %}
@@ -15,12 +14,11 @@
                     {{ item.name }} {{ item.desc }}
                 </a>
 
-                <a href="{% url 'mainapp:group_change' item.id %}" class="btn btn-info">
+                <a href="{% url 'mainapp:group_change' item.id %}">
                     Редактировать
                 </a>
 
-                <a href="{% url 'mainapp:group_delete' item.id %}"
-                   style="text-decoration: none;">
+                <a href="{% url 'mainapp:group_delete' item.id %}">
                     Удалить
                 </a>
             </li>
